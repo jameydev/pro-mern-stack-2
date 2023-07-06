@@ -80,7 +80,7 @@ var IssueRow = /*#__PURE__*/function (_React$Component4) {
         style: style
       }, this.props.issue_id), /*#__PURE__*/React.createElement("td", {
         style: style
-      }, this.props.issue_title));
+      }, this.props.children));
     }
   }]);
   return IssueRow;
@@ -109,13 +109,11 @@ var IssueTable = /*#__PURE__*/function (_React$Component5) {
         style: rowStyle
       }, "Title"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement(IssueRow, {
         rowStyle: rowStyle,
-        issue_id: 1,
-        issue_title: "Error when clicking Add"
-      }), /*#__PURE__*/React.createElement(IssueRow, {
+        issue_id: 1
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0            Error in console when clicking Add \xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0          "), "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0          ", /*#__PURE__*/React.createElement(IssueRow, {
         rowStyle: rowStyle,
-        issue_id: 2,
-        issue_title: "Missing bottom border on panel"
-      })));
+        issue_id: 2
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0            Missing ", /*#__PURE__*/React.createElement("strong", null, "bottom"), " border on panel \xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0          ")));
     }
   }]);
   return IssueTable;
