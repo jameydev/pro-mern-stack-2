@@ -1,16 +1,37 @@
-class HelloWorld extends React.Component {
-    render() {
-        const continents = ['Africa', 'America', 'Asia', 'Austrailia', 'Europe'];
-        const helloContinents = Array.from(continents, c => `Hello ${c}!`);
-        const message = helloContinents.join(' ');
-        
-        return (
-            <div title="Outer Div">
-                <h1>{message}</h1>
-            </div>
-        );
+// class HelloWorld extends React.Component {
+//     render() {
+//         const continents = ['Africa', 'America', 'Asia', 'Austrailia', 'Europe'];
+//         const helloContinents = Array.from(continents, c => `Hello ${c}!`);
+//         const message = helloContinents.join(' ');
+
+//         return (
+//             <div title="Outer Div">
+//                 <h1>{message}</h1>
+//             </div>
+//         );
+//     }
+// }
+
+const issues = [
+    {
+        id: 1,
+        status: 'New',
+        owner: 'Jamey',
+        effort: 5,
+        created: new Date('2023-07-05'),
+        due: undefined,
+        title: 'Error in console when clicking Add'
+    },
+    {
+        id: 2,
+        status: 'Assigned',
+        owner: 'Eddie',
+        effort: 14,
+        created: new Date('2023-07-04'),
+        due: new Date('2023-07-30'),
+        title: 'Missing bottom border on panel'
     }
-}
+];
 
 class IssueFilter extends React.Component {
     render() {
@@ -30,12 +51,16 @@ class IssueAdd extends React.Component {
 
 class IssueRow extends React.Component {
     render() {
-        const style = this.props.rowStyle;
+        const issue = this.props.issue;
         return (
             <tr>
-                <td style={style}>{this.props.issue_id}</td>
-                {/* <td style={style}>{this.props.issue_title}</td> */}
-                <td style={style}>{this.props.children}</td>
+                <td>{issue.id}</td>
+                <td>{issue.status}</td>
+                <td>{issue.owner}</td>
+                <td>{issue.created.toDateString()}</td>
+                <td>{issue.effort}</td>
+                <td>{issue.due ? issue.due.toDateString() : ''}</td>
+                <td>{issue.title}</td>
             </tr>
         );
     }
@@ -43,22 +68,28 @@ class IssueRow extends React.Component {
 
 class IssueTable extends React.Component {
     render() {
-        const rowStyle = { border: "1px solid silver", padding: 4 };
+        // const rowStyle = { border: "1px solid silver", padding: 4 };
+        const issueRows = issues.map(issue => {
+            <IssueRow key={issue.id} issue={issue} />
+        });
         return (
-            <table style={{ borderCollapse: "collapse" }}>
+            <table className="bordered-table">
                 <thead>
                     <tr>
-                        <th style={rowStyle}>ID</th>
-                        <th style={rowStyle}>Title</th>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>Created</th>
+                        <th>Effort</th>
+                        <th>Due Date</th>
+                        <th>Title</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <IssueRow rowStyle={rowStyle} issue_id={1}>
-                        Error in console when clicking Add
-                    </IssueRow>
-                    <IssueRow rowStyle={rowStyle} issue_id={2}>
-                        Missing <strong>bottom</strong> border on panel
-                    </IssueRow>
+                    {issues.map(issue => {
+                        <IssueRow key={issue.id} issue={issue} />
+                        console.log(issue);
+                    })}
                 </tbody>
             </table>
         );
